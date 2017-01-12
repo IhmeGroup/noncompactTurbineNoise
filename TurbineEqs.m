@@ -8,6 +8,7 @@ function[res] = TurbineEqs(p)
 	global R;
 	global M1;
 	global U1;
+	global V1;
 	global gamma;
 	global gm1;
 	global gp1;
@@ -27,7 +28,9 @@ function[res] = TurbineEqs(p)
 	A = returnA(ess);
 	theta = returnTheta(ess);
 
-	res(1) = rho1*U1*A1 - rho*U*A;
+	W1 = sqrt(U1*U1 + V1*V1);
+	W = sqrt(U*U + V*V);
+	res(1) = rho1*W1*A1 - rho*W*A;
 	res(2) = U*atan(theta) - V;
 	res(3) = M*M - (U*U + V*V)/(gamma*R*T);
 	res(4) = rho - rho0*(1+gm1o2*M*M)^(-1/gm1);

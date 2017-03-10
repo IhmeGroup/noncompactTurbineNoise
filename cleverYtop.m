@@ -1,14 +1,4 @@
-function[y_top] = cleverYtop(x)
-	global param;
-	x_tl 	= cell2mat(param(1));
-	y_tl 	= cell2mat(param(2));
-	x_tr 	= cell2mat(param(3));
-	y_tr 	= cell2mat(param(4));
-	m 		= cell2mat(param(5));
-%	x_c 	= cell2mat(param(6));
-%	y_c 	= cell2mat(param(7));
-	ytop 	= cell2mat(param(8));
-%	dydx	= cell2mat(param(9));
+function[y_top] = cleverYtop(x, ytop, x_tl, y_tl, x_tr, y_tr, m)
 	if (x <= x_tl)
 		y_top = y_tl;
 	elseif (x >= x_tr)

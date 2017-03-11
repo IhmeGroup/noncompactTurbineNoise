@@ -36,8 +36,8 @@ classdef nonCompactSolution
 %			build characteristics
 			for i = 1:N
 				M(i) 			= ppval(splines.M_bar.raw, eta(i));
-				pi_plus(i) 		= 0.5*(p(i) + w(i)/M(i)); 
-				pi_minus(i) 	= 0.5*(p(i) - w(i)/M(i));
+				pi_plus(i) 		= (p(i) + w(i)*M(i)); 
+				pi_minus(i) 	= (p(i) - w(i)*M(i));
 				sigma(i)		= s(i);
 			end%for i = 1:N
 

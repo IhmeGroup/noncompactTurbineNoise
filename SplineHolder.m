@@ -16,7 +16,7 @@ classdef SplineHolder
 		psi_bar
 	end%properties
 	methods
-		function splines = SplineHolder(run)
+		function splines = SplineHolder(run, M_1, M_2, theta_1, theta_2)
 
 			if (run == 1)
 				disp('Building base flow for straight channel');
@@ -33,12 +33,16 @@ classdef SplineHolder
 			elseif (run == 4)
 				disp('Building base flow for single stator');
 				[boundaries, x_c, y_c, ytop, ybot, stagnation_state] = rotor();
-
+			elseif (run == 5)
+				disp('Buildling Leykos comparison case');
+				[baseFlow] = leyko(M_1, M_2, theta_1, theta_2);
 			else
 				error('Run type not implemented yet');
 			end
 
-			[baseFlow] 	= buildBaseFlow(boundaries, x_c, y_c, ytop, ybot, stagnation_state);
+			if (run ~= 5)
+				[baseFlow] 	= buildBaseFlow(boundaries, x_c, y_c, ytop, ybot, stagnation_state);
+			end
 
 			splines.x_c			= SplineField(baseFlow.s,baseFlow.x_c);
 			splines.y_c			= SplineField(baseFlow.s,baseFlow.y_c);
